@@ -2,7 +2,6 @@ package com.WebService.DondeEstanApp.service.Impl;
 
 import java.util.List;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,11 +40,6 @@ public class UserObserveeServiceImpl implements UserObserveeService {
 	@Override
 	public UserObservee findUserObserveeById(int id) {
 		return userObserveeDAO.findUserObserveeById(id);
-	}
-	
-	@Override
-	public JSONObject findOnlyUserObserveeById(int id) {
-		return userObserveeDAO.findOnlyUserObserveeById(id);
 	}
 
 	@Override

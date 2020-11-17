@@ -17,11 +17,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "USERS_OBSERVEES")
-@PrimaryKeyJoinColumn(referencedColumnName = "userObserveeIdFK")
+@PrimaryKeyJoinColumn(referencedColumnName = "userId")
 public class UserObservee extends User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
 
 	@Column(name = "privacyKey", nullable = true, unique = true)
 	private String privacyKey;

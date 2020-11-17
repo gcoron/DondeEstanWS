@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.WebService.DondeEstanApp.dao.ObserverUserDAO;
 import com.WebService.DondeEstanApp.model.ObserverUser;
+import com.WebService.DondeEstanApp.model.User;
 
 @Repository
 public class ObserverUserDAOImpl implements ObserverUserDAO {
@@ -48,12 +49,24 @@ public class ObserverUserDAOImpl implements ObserverUserDAO {
 
 	@Override
 	public ObserverUser findObserverUserByUsername(String username) {
-		return (ObserverUser) getSession().createQuery("SELECT u FROM UsuarioObservador u where u.nombreUsuario = :username").setParameter("username", username).uniqueResult();
+		User user = (User) getSession().createQuery("SELECT u FROM User u where u.username = :username").setParameter("username", username).uniqueResult();
+		if (user!= null) {
+			ObserverUser uObserver = getSession().get(ObserverUser.class, user.getUserId());
+			return uObserver;
+		} else {
+			return null;
+		}
 	}
 
 	@Override
 	public ObserverUser findObserverUserByEmail(String email) {
-		return (ObserverUser) getSession().createQuery("SELECT u FROM UsuarioObservador u where u.email = :email").setParameter("email", email).uniqueResult();
+		User user = (User) getSession().createQuery("SELECT u FROM User u where u.email = :email").setParameter("email", email).uniqueResult();
+		if (user!= null) {
+			ObserverUser uObserver = getSession().get(ObserverUser.class, user.getUserId());
+			return uObserver;
+		} else {
+			return null;
+		}
 	}
 }
 

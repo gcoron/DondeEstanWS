@@ -5,11 +5,11 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.WebService.DondeEstanApp.dao.UserObserveeDAO;
+import com.WebService.DondeEstanApp.model.User;
 import com.WebService.DondeEstanApp.model.UserObservee;
 
 @Repository
@@ -46,36 +46,31 @@ public class UserObserveeDAOImpl implements UserObserveeDAO{
 		return getSession().get(UserObservee.class, id);
 		
 	}
-
-	@Override
-	public JSONObject findOnlyUserObserveeById(int id) {
-		UserObservee uObservado = getSession().get(UserObservee.class, id);
-		JSONObject response = new JSONObject();
-		
-		response.put("name", uObservado.getName());
-		response.put("lastname", uObservado.getLastName());
-		response.put("username", uObservado.getUsername());
-		response.put("password", uObservado.getPassword());
-		response.put("companyName", uObservado.getCompanyName());
-		response.put("patente", uObservado.getLicensePlate());
-		response.put("matricula", uObservado.getCarRegistration());
-		response.put("privacyKey", uObservado.getPrivacyKey());
-		
-		return response;
-	}
 	
 	@Override
 	public UserObservee findUserObserveeByUsername(String username) {
-		return (UserObservee) getSession().createQuery("SELECT u FROM UsuarioObservado u where u.nombreUsuario = :username").setParameter("username", username).uniqueResult();
+		User user = (User) getSession().createQuery("SELECT u FROM User u where u.username = :username").setParameter("username", username).uniqueResult();
+		if (user!= null) {
+			UserObservee uObservee = getSession().get(UserObservee.class, user.getUserId());
+			return uObservee;
+		} else {
+			return null;
+		}
 	}
 	
 	@Override
-	public UserObservee findUserObserveeByPrivacyKey(String clavePrivacidad) {
-		return (UserObservee) getSession().createQuery("SELECT u FROM UsuarioObservado u where u.clavePrivacidad = :clavePrivacidad").setParameter("clavePrivacidad", clavePrivacidad).uniqueResult();
+	public UserObservee findUserObserveeByPrivacyKey(String privacyKey) {
+		return (UserObservee) getSession().createQuery("SELECT u FROM UserObservee u where u.privacyKey = :privacyKey").setParameter("privacyKey", privacyKey).uniqueResult();
 	}
 	
 	@Override
 	public UserObservee findUserObserveeByEmail(String email) {
-		return (UserObservee) getSession().createQuery("SELECT u FROM UsuarioObservado u where u.email= :email").setParameter("email", email).uniqueResult();
+		User user = (User) getSession().createQuery("SELECT u FROM User u where u.email= :email").setParameter("email", email).uniqueResult();
+		if (user!= null) {
+			UserObservee uObservee = getSession().get(UserObservee.class, user.getUserId());
+			return uObservee;
+		} else {
+			return null;
+		}
 	}
 }

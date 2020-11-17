@@ -2,8 +2,6 @@ package com.WebService.DondeEstanApp.service;
 
 import java.util.List;
 
-import org.json.JSONObject;
-
 import com.WebService.DondeEstanApp.model.UserObservee;
 
 public interface UserObserveeService {
@@ -16,8 +14,6 @@ public interface UserObserveeService {
 	public void deleteUserObservee(int id);
 	
 	public UserObservee findUserObserveeById(int id);
-
-	public JSONObject findOnlyUserObserveeById(int id);
 
 	public UserObservee findUserObserveeByUsername(String username);
 	

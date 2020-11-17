@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "OBSERVERS_USERS")
-@PrimaryKeyJoinColumn(referencedColumnName = "observerUserIdFK")
+@PrimaryKeyJoinColumn(referencedColumnName = "userId")
 public class ObserverUser extends User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -27,6 +27,7 @@ public class ObserverUser extends User implements Serializable{
 	@Column(name = "childsName", nullable = true)
 	private String childsName;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userObserveeIdFK")
 	private UserObservee userObservee;
