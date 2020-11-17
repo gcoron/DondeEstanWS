@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 //import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //import org.hibernate.annotations.Fetch;
 //import org.hibernate.annotations.FetchMode;
 
@@ -28,7 +30,7 @@ public class Address implements Serializable{
 	@Id
 	@Column(name = "addressId", nullable = false, unique = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idAddress;
+	private int addressId;
 
 	@Column(name = "street", nullable = true)
 	private String street;
@@ -49,7 +51,7 @@ public class Address implements Serializable{
 	private String country;
 
 	@Column(name = "floor")
-	private int floor;
+	private String floor;
 	
 	@Column(name = "apartament")
 	private String apartament;
@@ -60,12 +62,13 @@ public class Address implements Serializable{
 	@Column(name = "longitude")
 	private String longitude;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "observerUserIdFK")
 	private ObserverUser observerUser;
 	
 	public Address(String street, double number, long zipCode, String city, String state, String country,
-			int floor, String apartament, String latitude, String longitude) {
+			String floor, String apartament, String latitude, String longitude) {
 		this.street = street;
 		this.number = number;
 		this.zipCode = zipCode;
@@ -81,12 +84,12 @@ public class Address implements Serializable{
 	public Address() {
 	}
 
-	public int getIdAddress() {
-		return idAddress;
+	public int getAddressId() {
+		return addressId;
 	}
 
-	public void setIdAddress(int idAddress) {
-		this.idAddress = idAddress;
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
 	}
 
 	public String getStreet() {
@@ -137,11 +140,11 @@ public class Address implements Serializable{
 		this.country = country;
 	}
 
-	public int getFloor() {
+	public String getFloor() {
 		return floor;
 	}
 
-	public void setFloor(int floor) {
+	public void setFloor(String floor) {
 		this.floor = floor;
 	}
 

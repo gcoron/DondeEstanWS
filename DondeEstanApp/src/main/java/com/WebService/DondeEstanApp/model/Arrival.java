@@ -24,7 +24,7 @@ public class Arrival implements Serializable {
 	@Id
 	@Column(name = "arrivalId", nullable = false, unique = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idArrival;
+	private int arrivalId;
 	
 	@Column(name = "dayHour", nullable = true)
 	private String dayHour;
@@ -61,12 +61,12 @@ public class Arrival implements Serializable {
 	public Arrival() {
 	}
 
-	public int getIdArrival() {
-		return idArrival;
+	public int getArrivalId() {
+		return arrivalId;
 	}
 
-	public void setIdArrival(int idArrival) {
-		this.idArrival = idArrival;
+	public void setArrivalId(int arrivalId) {
+		this.arrivalId = arrivalId;
 	}
 
 	public String getDayHour() {
