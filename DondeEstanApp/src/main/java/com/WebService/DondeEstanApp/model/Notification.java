@@ -17,7 +17,7 @@ public class Notification {
 	@Id
 	@Column(name = "notificationId", nullable = false, unique = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idNotification;
+	private int notificationId;
 
 	@Column(name = "title", nullable = true)
 	private String title;
@@ -29,12 +29,12 @@ public class Notification {
 	@JoinColumn(name = "userObserveeIdFK")
 	private UserObservee userObservee;
 
-	public int getIdNotification() {
-		return idNotification;
+	public int getNotificationId() {
+		return notificationId;
 	}
 
-	public void setIdNotification(int idNotification) {
-		this.idNotification = idNotification;
+	public void setNotificationId(int notificationId) {
+		this.notificationId = notificationId;
 	}
 
 	public String getTitle() {
