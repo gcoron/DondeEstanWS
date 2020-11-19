@@ -55,30 +55,10 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `DondeEstanAppDB`.`USERS_OBSERVEES`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DondeEstanAppDB`.`USERS_OBSERVEES` (
-  `privacyKey` VARCHAR(45) NOT NULL,
-  `companyName` VARCHAR(45) NOT NULL,
-  `licensePlate` VARCHAR(45) NOT NULL,
-  `carRegistration` VARCHAR(45) NOT NULL,
-  `userId` INT NOT NULL,
-  PRIMARY KEY (`userId`),
-  INDEX `fk_USERS_OBSERVEES_USERS_idx` (`userId` ASC) VISIBLE,
-  UNIQUE INDEX `privacyKey_UNIQUE` (`privacyKey` ASC) VISIBLE,
-  CONSTRAINT `fk_USERS_OBSERVEES_USERS`
-    FOREIGN KEY (`userId`)
-    REFERENCES `DondeEstanAppDB`.`USERS` (`userId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `DondeEstanAppDB`.`OBSERVERS_USERS`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `DondeEstanAppDB`.`OBSERVERS_USERS` (
-  `childsName` INT NOT NULL,
+  `childsName` VARCHAR(45) NOT NULL,
   `userId` INT NOT NULL,
   `userObserveeIdFK` INT NOT NULL,
   PRIMARY KEY (`userId`),
