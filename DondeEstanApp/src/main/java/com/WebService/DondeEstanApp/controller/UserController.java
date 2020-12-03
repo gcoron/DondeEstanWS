@@ -41,7 +41,7 @@ public class UserController {
 	@RequestMapping(value = "/users", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody String getListUsers() {
 		
-		List<User> users = userService.getListUser();
+		List<User> users;
 		try {
 			users = userService.getListUser();
 		} catch (Exception e) {
