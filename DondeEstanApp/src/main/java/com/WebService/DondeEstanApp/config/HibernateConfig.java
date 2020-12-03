@@ -35,7 +35,7 @@ public class HibernateConfig {
   ds.setDriverClassName("com.mysql.jdbc.Driver");
   ds.setUrl("jdbc:mysql://localhost:3306/DondeEstanAppDB");
   ds.setUsername("dondeestanapp");
-  ds.setPassword("Bautimaximo8.-");
+  ds.setPassword("DondeEstanApp");
   
   return ds;
  }
